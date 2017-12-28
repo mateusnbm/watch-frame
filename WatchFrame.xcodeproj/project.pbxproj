@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */; };
 		604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A3CB51FF342B200E1FB45 /* SettingsViewController.m */; };
+		609872361FF431BD00F324FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609872351FF431BD00F324FB /* StoreKit.framework */; };
+		609872421FF45DD600F324FB /* AppCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 609872411FF45DD600F324FB /* AppCoordinator.m */; };
+		609872451FF4698E00F324FB /* RootCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 609872441FF4698E00F324FB /* RootCoordinator.m */; };
+		609872481FF4705C00F324FB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 609872471FF4705C00F324FB /* RootViewController.m */; };
+		6098724B1FF4766B00F324FB /* SettingsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6098724A1FF4766B00F324FB /* SettingsCoordinator.m */; };
 		609D07CE1E88123B00D0B840 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D07CD1E88123B00D0B840 /* main.m */; };
 		609D07D11E88123B00D0B840 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D07D01E88123B00D0B840 /* AppDelegate.m */; };
 		609D07D91E88123B00D0B840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 609D07D81E88123B00D0B840 /* Assets.xcassets */; };
 		609D07DC1E88123B00D0B840 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609D07DA1E88123B00D0B840 /* LaunchScreen.storyboard */; };
 		609D07E51E88569900D0B840 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609D07E41E88569900D0B840 /* AssetsLibrary.framework */; };
 		609D07EE1E88674700D0B840 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609D07ED1E88674700D0B840 /* MainWindow.xib */; };
-		60BE77821FEC8F9B00F176C8 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BE77811FEC8F9B00F176C8 /* SimpleViewController.m */; };
 		60BE77901FEF0B0400F176C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BE778F1FEF0B0400F176C8 /* QuartzCore.framework */; };
 		60BE77921FEF0B1100F176C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BE77911FEF0B1100F176C8 /* CoreGraphics.framework */; };
 		60BE77941FEF0B2900F176C8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BE77931FEF0B2900F176C8 /* Accelerate.framework */; };
@@ -37,6 +41,18 @@
 		6034FFC11FF306F000C1CE8B /* UIImage+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BackgroundColor.h"; sourceTree = "<group>"; };
 		604A3CB41FF342B200E1FB45 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		604A3CB51FF342B200E1FB45 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		609872351FF431BD00F324FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		609872401FF45DD600F324FB /* AppCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppCoordinator.h; sourceTree = "<group>"; };
+		609872411FF45DD600F324FB /* AppCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppCoordinator.m; sourceTree = "<group>"; };
+		609872431FF4698E00F324FB /* RootCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootCoordinator.h; sourceTree = "<group>"; };
+		609872441FF4698E00F324FB /* RootCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootCoordinator.m; sourceTree = "<group>"; };
+		609872461FF4705C00F324FB /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		609872471FF4705C00F324FB /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		609872491FF4766B00F324FB /* SettingsCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsCoordinator.h; sourceTree = "<group>"; };
+		6098724A1FF4766B00F324FB /* SettingsCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsCoordinator.m; sourceTree = "<group>"; };
+		6098724C1FF4779C00F324FB /* RootViewControllerProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerProtocols.h; sourceTree = "<group>"; };
+		6098724F1FF4875000F324FB /* SettingsViewControllerProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewControllerProtocols.h; sourceTree = "<group>"; };
+		609872501FF4912200F324FB /* SettingsCoordinatorProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsCoordinatorProtocols.h; sourceTree = "<group>"; };
 		609D07C91E88123B00D0B840 /* WatchFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		609D07CD1E88123B00D0B840 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		609D07CF1E88123B00D0B840 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,8 +62,6 @@
 		609D07DD1E88123B00D0B840 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		609D07E41E88569900D0B840 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		609D07ED1E88674700D0B840 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		60BE77801FEC8F9B00F176C8 /* SimpleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleViewController.h; sourceTree = "<group>"; };
-		60BE77811FEC8F9B00F176C8 /* SimpleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleViewController.m; sourceTree = "<group>"; };
 		60BE778F1FEF0B0400F176C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		60BE77911FEF0B1100F176C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		60BE77931FEF0B2900F176C8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -62,7 +76,7 @@
 		60CAA2B51FF3595A00497FEB /* watch_silver_aluminum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_silver_aluminum.png; sourceTree = "<group>"; };
 		60CAA2B61FF3595B00497FEB /* watch_space_gray_aluminum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_space_gray_aluminum.png; sourceTree = "<group>"; };
 		60CAA2B71FF3595B00497FEB /* watch_stainless_steel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_stainless_steel.png; sourceTree = "<group>"; };
-		60CAA2BE1FF35C1A00497FEB /* WatchKind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchKind.h; sourceTree = "<group>"; };
+		60CAA2BE1FF35C1A00497FEB /* WatchCases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchCases.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60BE77981FEF0B3D00F176C8 /* UIKit.framework in Frameworks */,
+				609872361FF431BD00F324FB /* StoreKit.framework in Frameworks */,
 				60BE77961FEF0B3800F176C8 /* Foundation.framework in Frameworks */,
 				60BE77941FEF0B2900F176C8 /* Accelerate.framework in Frameworks */,
 				60BE77921FEF0B1100F176C8 /* CoreGraphics.framework in Frameworks */,
@@ -89,6 +104,39 @@
 				6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		609872371FF4446400F324FB /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				609872431FF4698E00F324FB /* RootCoordinator.h */,
+				609872441FF4698E00F324FB /* RootCoordinator.m */,
+				609872461FF4705C00F324FB /* RootViewController.h */,
+				609872471FF4705C00F324FB /* RootViewController.m */,
+				6098724C1FF4779C00F324FB /* RootViewControllerProtocols.h */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		609872381FF4446D00F324FB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				609872491FF4766B00F324FB /* SettingsCoordinator.h */,
+				6098724A1FF4766B00F324FB /* SettingsCoordinator.m */,
+				609872501FF4912200F324FB /* SettingsCoordinatorProtocols.h */,
+				604A3CB41FF342B200E1FB45 /* SettingsViewController.h */,
+				604A3CB51FF342B200E1FB45 /* SettingsViewController.m */,
+				6098724F1FF4875000F324FB /* SettingsViewControllerProtocols.h */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		6098723F1FF45D6D00F324FB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				60CAA2BE1FF35C1A00497FEB /* WatchCases.h */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 		609D07C01E88123B00D0B840 = {
@@ -113,8 +161,10 @@
 			children = (
 				609D07CF1E88123B00D0B840 /* AppDelegate.h */,
 				609D07D01E88123B00D0B840 /* AppDelegate.m */,
+				609872401FF45DD600F324FB /* AppCoordinator.h */,
+				609872411FF45DD600F324FB /* AppCoordinator.m */,
 				6034FFC31FF306F800C1CE8B /* Categories */,
-				60BE778D1FEF079C00F176C8 /* Libraries */,
+				6098723F1FF45D6D00F324FB /* Constants */,
 				60BE77761FEC891400F176C8 /* Modules */,
 				60BE77771FEC891D00F176C8 /* Resources */,
 				609D07CC1E88123B00D0B840 /* Supporting Files */,
@@ -137,6 +187,7 @@
 		609D07E31E88569900D0B840 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				609872351FF431BD00F324FB /* StoreKit.framework */,
 				60BE77971FEF0B3D00F176C8 /* UIKit.framework */,
 				60BE77951FEF0B3800F176C8 /* Foundation.framework */,
 				60BE77931FEF0B2900F176C8 /* Accelerate.framework */,
@@ -150,11 +201,8 @@
 		60BE77761FEC891400F176C8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				60CAA2BE1FF35C1A00497FEB /* WatchKind.h */,
-				60BE77801FEC8F9B00F176C8 /* SimpleViewController.h */,
-				60BE77811FEC8F9B00F176C8 /* SimpleViewController.m */,
-				604A3CB41FF342B200E1FB45 /* SettingsViewController.h */,
-				604A3CB51FF342B200E1FB45 /* SettingsViewController.m */,
+				609872371FF4446400F324FB /* Root */,
+				609872381FF4446D00F324FB /* Settings */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -181,13 +229,6 @@
 				60CAA2B51FF3595A00497FEB /* watch_silver_aluminum.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		60BE778D1FEF079C00F176C8 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +264,11 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = E45NCZ4KFV;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -272,8 +318,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				609D07D11E88123B00D0B840 /* AppDelegate.m in Sources */,
-				60BE77821FEC8F9B00F176C8 /* SimpleViewController.m in Sources */,
+				609872421FF45DD600F324FB /* AppCoordinator.m in Sources */,
 				604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */,
+				609872451FF4698E00F324FB /* RootCoordinator.m in Sources */,
+				609872481FF4705C00F324FB /* RootViewController.m in Sources */,
+				6098724B1FF4766B00F324FB /* SettingsCoordinator.m in Sources */,
 				609D07CE1E88123B00D0B840 /* main.m in Sources */,
 				6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */,
 			);

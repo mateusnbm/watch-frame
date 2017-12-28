@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "SimpleViewController.h"
+#import "AppCoordinator.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, retain) AppCoordinator *coordinator;
 
 @end
 
@@ -17,14 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    SimpleViewController *controller = [[SimpleViewController alloc] init];
+    self.coordinator = [[AppCoordinator alloc] init];
     
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    [self.coordinator start];
     
     self.window.frame = [[UIScreen mainScreen] bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = self.coordinator.rootViewController;
     
     [self.window makeKeyWindow];
     

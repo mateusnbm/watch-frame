@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WatchKind.h"
+#import <StoreKit/StoreKit.h>
 
-@protocol SettingsViewControllerDelegate;
+#import "WatchCases.h"
+#import "SettingsViewControllerProtocols.h"
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController <SKProductsRequestDelegate>
 
 @property (nonatomic) kWatchCase watchCaseKind;
 @property (nonatomic, retain) id <SettingsViewControllerDelegate> delegate;
-
-@end
-
-@protocol SettingsViewControllerDelegate <NSObject>
-
-- (void)changedWatchKind:(kWatchCase)kind;
 
 @end

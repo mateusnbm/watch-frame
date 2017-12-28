@@ -1,17 +1,16 @@
 //
-//  SimpleViewController.m
-//  Frame It
+//  RootViewController.m
+//  WatchFrame
 //
-//  Created by Mateus Nunes de B Magalhaes on 12/21/17.
+//  Created by Mateus Nunes de B Magalhaes on 12/27/17.
 //  Copyright © 2017 mateusnbm. All rights reserved.
 //
 
-#import "SimpleViewController.h"
-#import "WatchKind.h"
+#import "RootViewController.h"
+#import "WatchCases.h"
 #import "UIImage+BackgroundColor.h"
-#import "SettingsViewController.h"
 
-@interface SimpleViewController ()
+@interface RootViewController ()
 
 @property (nonatomic) NSInteger watchCaseKind;
 
@@ -23,7 +22,7 @@
 
 @end
 
-@implementation SimpleViewController
+@implementation RootViewController
 
 #pragma mark -
 #pragma mark - Lifecycle
@@ -35,11 +34,11 @@
     UIImage *settingsImage = [UIImage imageNamed:@"settings-icon.png"];
     
     UIBarButtonItem *settingsBarButtonItem =
-        [[UIBarButtonItem alloc]
-         initWithImage:settingsImage
-         style:UIBarButtonItemStylePlain
-         target:self
-         action:@selector(openSettingsController)];
+    [[UIBarButtonItem alloc]
+     initWithImage:settingsImage
+     style:UIBarButtonItemStylePlain
+     target:self
+     action:@selector(openSettingsController)];
     
     self.title = @"Watch Frame";
     self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
@@ -66,7 +65,7 @@
         case kWatchCaseStainlessSteel: filename = @"watch_stainless_steel.png"; break;
         case kWatchCaseBlackStainlessSteel: filename = @"watch_black_stainless_steel.png"; break;
         default: filename = @"watch_gold_aluminum.png"; break;
-        
+            
     }
     
     return filename;
@@ -153,14 +152,11 @@
 
 - (void)openSettingsController {
     
-    SettingsViewController *con = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
-    con.watchCaseKind = self.watchCaseKind;
-    con.delegate = self;
-    
-    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:con];
-    
-    [self presentViewController:navCon animated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(rootViewControllerDidTapSettings)]) {
+        
+        [self.delegate rootViewControllerDidTapSettings];
+        
+    }
     
 }
 
@@ -197,14 +193,14 @@
 }
 
 #pragma mark -
-#pragma mark - SettingsViewControllerDelegate
+#pragma mark - Public
 
-- (void)changedWatchKind:(kWatchCase)kind {
+- (void)changeWatchCase:(kWatchCase)watchCase {
     
-    NSString *watchImageName = [self filenameForWatchKind:kind];
+    NSString *watchImageName = [self filenameForWatchKind:watchCase];
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     
-    self.watchCaseKind = kind;
+    self.watchCaseKind = watchCase;
     self.watchImageView.image = watchImage;
     
 }

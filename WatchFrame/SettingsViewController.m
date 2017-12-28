@@ -8,6 +8,8 @@
 
 #import "SettingsViewController.h"
 
+#define kTutorialPointProductID @"mateusnbm.watchframe.unlockallcases"
+
 @interface SettingsViewController ()
 
 @end
@@ -31,6 +33,15 @@
     
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
     
+    NSSet *productIDs = [NSSet setWithObject:kTutorialPointProductID];
+    SKProductsRequest *request =
+        [[SKProductsRequest alloc]
+         initWithProductIdentifiers:productIDs];
+    
+    request.delegate = self;
+    
+    [request start];
+    
 }
 
 #pragma mark -
@@ -38,7 +49,11 @@
 
 - (void)dismissController {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(settingsViewControllerDidTapDone)]) {
+        
+        [self.delegate settingsViewControllerDidTapDone];
+        
+    }
     
 }
 
@@ -64,13 +79,93 @@
 
 - (void)purchaseAllCases {
     
-    //
+    if (SKPaymentQueue.canMakePayments) {
+        
+        /*
+        SKPayment *payment = [SKPayment paymentWithProduct:product];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+        */
+        
+    }else{
+        
+        NSLog(@"Purchases are disabled in your device.");
+        
+    }
     
 }
 
 - (void)restorePurchases {
     
     //
+    
+}
+
+#pragma mark -
+#pragma mark - SKProductsRequestDelegate
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    
+    NSArray *products = response.products;
+    
+    for (SKProduct *product in products) {
+        
+        NSLog(@"product %@", product.productIdentifier);
+        
+    }
+    
+}
+
+#pragma mark -
+#pragma mark - StoreKitDelegate
+
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    
+    for (SKPaymentTransaction *transaction in transactions) {
+        
+        switch (transaction.transactionState) {
+                
+            case SKPaymentTransactionStatePurchasing:
+                
+                NSLog(@"Purchasing.");
+                
+                break;
+                
+            case SKPaymentTransactionStatePurchased:
+                
+                if ([transaction.payment.productIdentifier isEqualToString:kTutorialPointProductID]) {
+                    
+                    NSLog(@"Purchased.");
+                    
+                }
+                
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                
+                break;
+                
+            case SKPaymentTransactionStateRestored:
+                
+                NSLog(@"Restored.");
+                
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                
+                break;
+                
+            case SKPaymentTransactionStateFailed:
+                
+                NSLog(@"Purchase failed.");
+                
+                break;
+                
+            case SKPaymentTransactionStateDeferred:
+                
+                NSLog(@"Deferred.");
+                
+                break;
+                
+        }
+        
+    }
     
 }
 
@@ -150,7 +245,7 @@
             cell.textLabel.text = [self caseNameForKind:indexPath.row];
             cell.accessoryType = (indexPath.row == self.watchCaseKind ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
             
-            if (indexPath.row > 1) {
+            if (indexPath.row > 10) {
                 
                 cell.userInteractionEnabled = cell.textLabel.enabled = cell.detailTextLabel.enabled = NO;
             }
@@ -196,9 +291,9 @@
         
         // Tell the root controller to update the displayed watch image.
         
-        if ([self.delegate respondsToSelector:@selector(changedWatchKind:)]) {
+        if ([self.delegate respondsToSelector:@selector(settingsViewControllerDidSelectNewWatchCase:)]) {
             
-            [self.delegate changedWatchKind:indexPath.row];
+            [self.delegate settingsViewControllerDidSelectNewWatchCase:indexPath.row];
             
         }
         
