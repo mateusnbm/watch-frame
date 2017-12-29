@@ -13,7 +13,9 @@
 
 @interface RootCoordinator : NSObject <
     RootViewControllerDelegate,
-    SettingsCoordinatorProtocols
+    SettingsCoordinatorProtocols,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate
     >
 
 @property (nonatomic, retain) UIViewController *rootViewController;

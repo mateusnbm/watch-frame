@@ -8,9 +8,11 @@
 
 #import "SettingsViewController.h"
 
-#define kTutorialPointProductID @"mateusnbm.watchframe.unlockallcases"
-
 @interface SettingsViewController ()
+
+@property (nonatomic) BOOL shouldShowProductAccessoryLabel;
+@property (nonatomic) BOOL shouldShowProductActivityIndicator;
+@property (nonatomic, retain) NSString *productAccessoryLabelText;
 
 @end
 
@@ -33,14 +35,8 @@
     
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
     
-    NSSet *productIDs = [NSSet setWithObject:kTutorialPointProductID];
-    SKProductsRequest *request =
-        [[SKProductsRequest alloc]
-         initWithProductIdentifiers:productIDs];
-    
-    request.delegate = self;
-    
-    [request start];
+    self.shouldShowProductAccessoryLabel = NO;
+    self.shouldShowProductActivityIndicator = YES;
     
 }
 
@@ -57,39 +53,11 @@
     
 }
 
-- (NSString *)caseNameForKind:(kWatchCase)kind {
-    
-    NSString *name;
-    
-    switch (kind) {
-        
-        case kWatchCaseGoldAluminum: name = @"Gold Aluminum"; break;
-        case kWatchCaseRoseAluminum: name = @"Rose Aluminum"; break;
-        case kWatchCaseSilverAluminum: name = @"Silver Aluminum"; break;
-        case kWatchCaseSpaceGrayAluminum: name = @"Space Gray Aluminum"; break;
-        case kWatchCaseStainlessSteel: name = @"Stainless Steel"; break;
-        case kWatchCaseBlackStainlessSteel: name = @"Black Stainless Steel"; break;
-        default: name = @"Gold Aluminum"; break;
-            
-    }
-    
-    return name;
-    
-}
-
 - (void)purchaseAllCases {
     
-    if (SKPaymentQueue.canMakePayments) {
+    if ([self.delegate respondsToSelector:@selector(settingsViewControllerDidTapUnlockAllCases)]) {
         
-        /*
-        SKPayment *payment = [SKPayment paymentWithProduct:product];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-        */
-        
-    }else{
-        
-        NSLog(@"Purchases are disabled in your device.");
+        [self.delegate settingsViewControllerDidTapUnlockAllCases];
         
     }
     
@@ -97,75 +65,41 @@
 
 - (void)restorePurchases {
     
-    //
-    
-}
-
-#pragma mark -
-#pragma mark - SKProductsRequestDelegate
-
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    
-    NSArray *products = response.products;
-    
-    for (SKProduct *product in products) {
+    if ([self.delegate respondsToSelector:@selector(settingsViewControllerDidTapRestorePurchases)]) {
         
-        NSLog(@"product %@", product.productIdentifier);
+        [self.delegate settingsViewControllerDidTapRestorePurchases];
         
     }
     
 }
 
 #pragma mark -
-#pragma mark - StoreKitDelegate
+#pragma mark - Public
 
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+- (void)showProductActivityIndicator {
     
-    for (SKPaymentTransaction *transaction in transactions) {
-        
-        switch (transaction.transactionState) {
-                
-            case SKPaymentTransactionStatePurchasing:
-                
-                NSLog(@"Purchasing.");
-                
-                break;
-                
-            case SKPaymentTransactionStatePurchased:
-                
-                if ([transaction.payment.productIdentifier isEqualToString:kTutorialPointProductID]) {
-                    
-                    NSLog(@"Purchased.");
-                    
-                }
-                
-                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                
-                break;
-                
-            case SKPaymentTransactionStateRestored:
-                
-                NSLog(@"Restored.");
-                
-                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                
-                break;
-                
-            case SKPaymentTransactionStateFailed:
-                
-                NSLog(@"Purchase failed.");
-                
-                break;
-                
-            case SKPaymentTransactionStateDeferred:
-                
-                NSLog(@"Deferred.");
-                
-                break;
-                
-        }
-        
-    }
+    self.shouldShowProductAccessoryLabel = NO;
+    self.shouldShowProductActivityIndicator = YES;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
+}
+
+- (void)showProductAccessoryLabelWithText:(NSString *)text {
+    
+    self.productAccessoryLabelText = text;
+    self.shouldShowProductAccessoryLabel = YES;
+    self.shouldShowProductActivityIndicator = NO;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
     
 }
 
@@ -180,7 +114,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return section == 0 ? 1 : (section == 1 ? kWatchCaseCount : 2);
+    return section == 0 ? WatchCases.count : (section == 1 ? 2 : 1);
     
 }
 
@@ -190,9 +124,9 @@
     
     switch (section) {
         
-        case 0: title = @""; break;
-        case 1: title = @"Case Selection"; break;
-        case 2: title = @"In-App Purchases"; break;
+        case 0: title = @"Case Selection"; break;
+        case 1: title = @"In-App Purchases"; break;
+        case 2: title = @"About"; break;
         
     }
     
@@ -202,19 +136,80 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString * const defaultCellIdentifier = @"default-cell-identifier";
-    static NSString * const accessoryLabelCellIdentifier = @"accessory-label-cell-identifier";
+    static NSString * const cellIdentifierDefault = @"ci-default";
+    static NSString * const cellIdentifierAccessoryLabel = @"ci-accessory-label";
+    static NSString * const cellIdentifierActivityIndicator = @"ci-activity indicator";
     
-    UILabel *label;
     UITableViewCell *cell;
+    UILabel *label;
+    UIActivityIndicatorView *indicator;
+    
+    BOOL cellDisabled = NO;
+    NSString *cellIdentifier;
+    NSString *cellTextLabelText;
+    NSString *cellAccessoryLabelText;
+    UIColor *cellAccessoryLabelTextColor = [UIColor blackColor];
+    UITableViewCellAccessoryType cellAccessoryType = UITableViewCellAccessoryNone;
     
     if (indexPath.section == 0) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:accessoryLabelCellIdentifier];
+        cellDisabled = (indexPath.row > 0 ? YES : NO);
+        cellIdentifier = cellIdentifierDefault;
+        cellTextLabelText = [WatchCases nameForWatchCase:indexPath.row];
+        cellAccessoryType = (indexPath.row == self.watchCaseKind ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+        
+    }else if (indexPath.section == 1 && indexPath.row == 0) {
+        
+        if (self.shouldShowProductAccessoryLabel == YES) {
+            
+            cellIdentifier = cellIdentifierAccessoryLabel;
+            cellTextLabelText = @"Unlock All Cases";
+            cellAccessoryLabelText = self.productAccessoryLabelText;
+            cellAccessoryLabelTextColor = UIColor.darkGrayColor;
+            
+        }else{
+            
+            cellIdentifier = cellIdentifierActivityIndicator;
+            cellTextLabelText = @"Unlock All Cases";
+            
+        }
+        
+    }else if (indexPath.section == 1 && indexPath.row == 1) {
+        
+        cellIdentifier = cellIdentifierDefault;
+        cellTextLabelText = @"Restore Purchases";
+        cellAccessoryType = UITableViewCellAccessoryNone;
+        
+    }else{
+        
+        cellIdentifier = cellIdentifierAccessoryLabel;
+        cellTextLabelText = @"Version";
+        cellAccessoryLabelText = @"v1.0";
+        
+    }
+    
+    if ([cellIdentifier isEqualToString:cellIdentifierDefault]) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierDefault];
         
         if (cell == nil) {
             
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:accessoryLabelCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierDefault];
+            
+        }
+        
+        cell.textLabel.text = cellTextLabelText;
+        cell.accessoryType = cellAccessoryType;
+        
+    }
+    
+    if ([cellIdentifier isEqualToString:cellIdentifierAccessoryLabel]) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierAccessoryLabel];
+        
+        if (cell == nil) {
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierAccessoryLabel];
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
             label.textAlignment = NSTextAlignmentRight;
@@ -227,44 +222,39 @@
             
         }
         
-        cell.textLabel.text = @"Version";
-        label.text = @"v1.0";
+        cell.textLabel.text = cellTextLabelText;
+        label.text = cellAccessoryLabelText;
+        label.textColor = cellAccessoryLabelTextColor;
         
-    }else{
+    }
+    
+    if ([cellIdentifier isEqualToString:cellIdentifierActivityIndicator]) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:defaultCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierAccessoryLabel];
         
         if (cell == nil) {
             
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:defaultCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierAccessoryLabel];
             
-        }
-        
-        if (indexPath.section == 1) {
-            
-            cell.textLabel.text = [self caseNameForKind:indexPath.row];
-            cell.accessoryType = (indexPath.row == self.watchCaseKind ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-            
-            if (indexPath.row > 10) {
-                
-                cell.userInteractionEnabled = cell.textLabel.enabled = cell.detailTextLabel.enabled = NO;
-            }
+            indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            indicator.hidesWhenStopped = NO;
+            [indicator startAnimating];
+            cell.accessoryView = indicator;
             
         }else{
             
-            if (indexPath.row == 0) {
-                
-                cell.textLabel.text = @"Unlock All Cases for $0.99";
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                
-            }else{
-                
-                cell.textLabel.text = @"Restore Purchases";
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
+            indicator = (UIActivityIndicatorView *) cell.accessoryView;
             
         }
         
+        cell.textLabel.text = cellTextLabelText;
+        [indicator startAnimating];
+        
+    }
+    
+    if (cellDisabled == YES) {
+        
+        cell.userInteractionEnabled = cell.textLabel.enabled = cell.detailTextLabel.enabled = NO;
     }
     
     return cell;
@@ -276,7 +266,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 1 && indexPath.row != self.watchCaseKind) {
+    if (indexPath.section == 0 && indexPath.row != self.watchCaseKind) {
         
         // Change case selection, switch checkmarks.
         
@@ -297,17 +287,13 @@
             
         }
         
-    }else if (indexPath.section == 2) {
+    }else if (indexPath.section == 1 && indexPath.row == 0) {
         
-        if (indexPath.row == 0) {
-            
-            [self purchaseAllCases];
-            
-        }else {
-            
-            [self restorePurchases];
-            
-        }
+        [self purchaseAllCases];
+        
+    }else if (indexPath.section == 1 && indexPath.row == 1) {
+        
+        [self restorePurchases];
         
     }
     

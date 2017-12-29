@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <StoreKit/StoreKit.h>
-
 #import "WatchCases.h"
 #import "SettingsViewControllerProtocols.h"
 
-@interface SettingsViewController : UITableViewController <SKProductsRequestDelegate>
+@interface SettingsViewController : UITableViewController
 
 @property (nonatomic) kWatchCase watchCaseKind;
 @property (nonatomic, retain) id <SettingsViewControllerDelegate> delegate;
+
+- (void)showProductActivityIndicator;
+- (void)showProductAccessoryLabelWithText:(NSString *)text;
 
 @end

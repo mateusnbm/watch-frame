@@ -15,5 +15,7 @@
 
 - (void)settingsViewControllerDidTapDone;
 - (void)settingsViewControllerDidSelectNewWatchCase:(kWatchCase)watchCase;
+- (void)settingsViewControllerDidTapUnlockAllCases;
+- (void)settingsViewControllerDidTapRestorePurchases;
 
 @end

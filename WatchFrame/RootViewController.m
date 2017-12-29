@@ -34,11 +34,11 @@
     UIImage *settingsImage = [UIImage imageNamed:@"settings-icon.png"];
     
     UIBarButtonItem *settingsBarButtonItem =
-    [[UIBarButtonItem alloc]
-     initWithImage:settingsImage
-     style:UIBarButtonItemStylePlain
-     target:self
-     action:@selector(openSettingsController)];
+        [[UIBarButtonItem alloc]
+         initWithImage:settingsImage
+         style:UIBarButtonItemStylePlain
+         target:self
+         action:@selector(openSettingsController)];
     
     self.title = @"Watch Frame";
     self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
@@ -52,26 +52,6 @@
 #pragma mark -
 #pragma mark - Private
 
-- (NSString *)filenameForWatchKind:(kWatchCase)kind {
-    
-    NSString *filename;
-    
-    switch (kind) {
-            
-        case kWatchCaseRoseAluminum: filename = @"watch_rose_aluminum.png"; break;
-        case kWatchCaseGoldAluminum: filename = @"watch_gold_aluminum.png"; break;
-        case kWatchCaseSilverAluminum: filename = @"watch_silver_aluminum.png"; break;
-        case kWatchCaseSpaceGrayAluminum: filename = @"watch_space_gray_aluminum.png"; break;
-        case kWatchCaseStainlessSteel: filename = @"watch_stainless_steel.png"; break;
-        case kWatchCaseBlackStainlessSteel: filename = @"watch_black_stainless_steel.png"; break;
-        default: filename = @"watch_gold_aluminum.png"; break;
-            
-    }
-    
-    return filename;
-    
-}
-
 - (void)setupView {
     
     CGSize screenSize = UIScreen.mainScreen.bounds.size;
@@ -84,7 +64,7 @@
     
     CGFloat watchImageWidth = 275;
     CGFloat watchImageHeight = 306;
-    NSString *watchImageName = [self filenameForWatchKind:self.watchCaseKind];
+    NSString *watchImageName = [WatchCases filenameForWatchCase:self.watchCaseKind];
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     UIImageView *watchImageView = [[UIImageView alloc] init];
     
@@ -162,17 +142,17 @@
 
 - (void)showImagePicker {
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    
-    [self presentViewController:picker animated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(rootViewControllerDidTapImageSelection)]) {
+        
+        [self.delegate rootViewControllerDidTapImageSelection];
+        
+    }
     
 }
 
 - (void)saveImageToCameraRoll {
     
-    NSString *watchImageName = [self filenameForWatchKind:self.watchCaseKind];
+    NSString *watchImageName = [WatchCases filenameForWatchCase:self.watchCaseKind];
     
     UIImage *image1 = self.screenshotImageView.image;
     UIImage *image2 = [UIImage imageNamed:watchImageName];
@@ -195,9 +175,9 @@
 #pragma mark -
 #pragma mark - Public
 
-- (void)changeWatchCase:(kWatchCase)watchCase {
+- (void)didChangeWatchCase:(kWatchCase)watchCase {
     
-    NSString *watchImageName = [self filenameForWatchKind:watchCase];
+    NSString *watchImageName = [WatchCases filenameForWatchCase:watchCase];
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     
     self.watchCaseKind = watchCase;
@@ -205,22 +185,9 @@
     
 }
 
-#pragma mark -
-#pragma mark - Image picker delegate
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
-    
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+- (void)didChangeImageSelection:(UIImage *)image {
     
     self.screenshotImageView.image = image;
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

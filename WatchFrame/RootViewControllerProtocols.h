@@ -11,5 +11,6 @@
 @protocol RootViewControllerDelegate <NSObject>
 
 - (void)rootViewControllerDidTapSettings;
+- (void)rootViewControllerDidTapImageSelection;
 
 @end

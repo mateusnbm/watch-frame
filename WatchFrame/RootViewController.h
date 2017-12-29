@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) id <RootViewControllerDelegate> delegate;
 
-- (void)changeWatchCase:(kWatchCase)watchCase;
+- (void)didChangeWatchCase:(kWatchCase)watchCase;
+- (void)didChangeImageSelection:(UIImage *)image;
 
 @end

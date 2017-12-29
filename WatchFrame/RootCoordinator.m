@@ -61,6 +61,16 @@
     
 }
 
+- (void)rootViewControllerDidTapImageSelection {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+    
+}
+
 #pragma mark -
 #pragma mark - SettingsCoordinatorProtocol
 
@@ -75,7 +85,25 @@
     
     RootViewController *con = (RootViewController *) self.navigationController.viewControllers.firstObject;
     
-    [con changeWatchCase:watchCase];
+    [con didChangeWatchCase:watchCase];
+    
+}
+
+#pragma mark -
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    RootViewController *con = (RootViewController *) self.navigationController.viewControllers.firstObject;
+    [con didChangeImageSelection:image];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     
 }
 
