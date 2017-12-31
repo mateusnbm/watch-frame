@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppCoordinator.h"
+#import "IAPManager.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [IAPManager sharedInstance];
     
     self.coordinator = [[AppCoordinator alloc] init];
     

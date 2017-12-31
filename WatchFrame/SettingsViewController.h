@@ -12,10 +12,16 @@
 
 @interface SettingsViewController : UITableViewController
 
-@property (nonatomic) kWatchCase watchCaseKind;
+@property (nonatomic) kWatchCase selectedCase;
 @property (nonatomic, retain) id <SettingsViewControllerDelegate> delegate;
+
+- (void)lockPremiumCases;
+- (void)unlockPremiumCases;
 
 - (void)showProductActivityIndicator;
 - (void)showProductAccessoryLabelWithText:(NSString *)text;
+
+- (void)showRestoreActivityIndicator;
+- (void)hideRestoreActivityIndicator;
 
 @end

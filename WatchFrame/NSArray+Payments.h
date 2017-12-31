@@ -11,6 +11,7 @@
 
 @interface NSArray (Payments)
 
+- (SKProduct *)productWithIdentifier:(NSString *)identifier;
 - (SKPaymentTransaction *)transactionWithProductIdentifier:(NSString *)identifier;
 
 @end

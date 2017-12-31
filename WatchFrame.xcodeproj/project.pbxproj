@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6002030D1FF6BFA200F2B996 /* IAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6002030C1FF6BFA200F2B996 /* IAPManager.m */; };
 		6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */; };
 		604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A3CB51FF342B200E1FB45 /* SettingsViewController.m */; };
 		607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = 607EA8171FF60A7A0025ADD6 /* NSArray+Payments.m */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6002030B1FF6BFA200F2B996 /* IAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPManager.h; sourceTree = "<group>"; };
+		6002030C1FF6BFA200F2B996 /* IAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAPManager.m; sourceTree = "<group>"; };
 		6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BackgroundColor.m"; sourceTree = "<group>"; };
 		6034FFC11FF306F000C1CE8B /* UIImage+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BackgroundColor.h"; sourceTree = "<group>"; };
 		604A3CB41FF342B200E1FB45 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -102,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6002030A1FF6BF6A00F2B996 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6002030B1FF6BFA200F2B996 /* IAPManager.h */,
+				6002030C1FF6BFA200F2B996 /* IAPManager.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		6034FFC31FF306F800C1CE8B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +185,7 @@
 				609872411FF45DD600F324FB /* AppCoordinator.m */,
 				6034FFC31FF306F800C1CE8B /* Categories */,
 				6098723F1FF45D6D00F324FB /* Conveniences */,
+				6002030A1FF6BF6A00F2B996 /* Services */,
 				60BE77761FEC891400F176C8 /* Modules */,
 				60BE77771FEC891D00F176C8 /* Resources */,
 				609D07CC1E88123B00D0B840 /* Supporting Files */,
@@ -329,6 +342,7 @@
 				607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */,
 				609872421FF45DD600F324FB /* AppCoordinator.m in Sources */,
 				609B43F21FF57FBC008C4B57 /* WatchCases.m in Sources */,
+				6002030D1FF6BFA200F2B996 /* IAPManager.m in Sources */,
 				604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */,
 				609872451FF4698E00F324FB /* RootCoordinator.m in Sources */,
 				609872481FF4705C00F324FB /* RootViewController.m in Sources */,

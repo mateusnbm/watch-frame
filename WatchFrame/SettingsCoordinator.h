@@ -13,12 +13,9 @@
 #import "SettingsCoordinatorProtocols.h"
 #import "SettingsViewControllerProtocols.h"
 
-@interface SettingsCoordinator : NSObject <
-    SettingsViewControllerDelegate,
-    SKProductsRequestDelegate,
-    SKPaymentTransactionObserver
-    >
+@interface SettingsCoordinator : NSObject <SettingsViewControllerDelegate>
 
+@property (nonatomic) kWatchCase selectedCase;
 @property (nonatomic, retain) id <SettingsCoordinatorProtocols> delegate;
 @property (nonatomic, retain) UIViewController *rootViewController;
 

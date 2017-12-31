@@ -10,9 +10,14 @@
 
 @interface SettingsViewController ()
 
+@property (nonatomic) BOOL shouldLockPremiumCases;
 @property (nonatomic) BOOL shouldShowProductAccessoryLabel;
 @property (nonatomic) BOOL shouldShowProductActivityIndicator;
+@property (nonatomic) BOOL shouldShowRestoreActivityIndicator;
+
 @property (nonatomic, retain) NSString *productAccessoryLabelText;
+
+@property (nonatomic, retain) UISelectionFeedbackGenerator *tapticGenerator;
 
 @end
 
@@ -20,6 +25,31 @@
 
 #pragma mark -
 #pragma mark - Lifecycle
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    
+    self = [super initWithStyle:style];
+    
+    if (self) {
+        
+        self.shouldLockPremiumCases = YES;
+        self.shouldShowProductAccessoryLabel = NO;
+        self.shouldShowProductActivityIndicator = YES;
+        self.shouldShowRestoreActivityIndicator = NO;
+        
+        if (UIFeedbackGenerator.class) {
+            
+            self.tapticGenerator = [[UISelectionFeedbackGenerator alloc] init];
+            
+            [self.tapticGenerator prepare];
+            
+        }
+        
+    }
+    
+    return self;
+    
+}
 
 - (void)viewDidLoad {
     
@@ -34,9 +64,6 @@
          action:@selector(dismissController)];
     
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
-    
-    self.shouldShowProductAccessoryLabel = NO;
-    self.shouldShowProductActivityIndicator = YES;
     
 }
 
@@ -76,16 +103,31 @@
 #pragma mark -
 #pragma mark - Public
 
+- (void)lockPremiumCases {
+    
+    self.shouldLockPremiumCases = YES;
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
+
+- (void)unlockPremiumCases {
+    
+    self.shouldLockPremiumCases = NO;
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
+
 - (void)showProductActivityIndicator {
     
     self.shouldShowProductAccessoryLabel = NO;
     self.shouldShowProductActivityIndicator = YES;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    
-    [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
     
 }
 
@@ -96,10 +138,25 @@
     self.shouldShowProductActivityIndicator = NO;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    
-    [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
+    
+}
+
+- (void)showRestoreActivityIndicator {
+    
+    self.shouldShowRestoreActivityIndicator = YES;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
+
+- (void)hideRestoreActivityIndicator {
+    
+    self.shouldShowRestoreActivityIndicator = NO;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
 }
 
@@ -138,7 +195,7 @@
     
     static NSString * const cellIdentifierDefault = @"ci-default";
     static NSString * const cellIdentifierAccessoryLabel = @"ci-accessory-label";
-    static NSString * const cellIdentifierActivityIndicator = @"ci-activity indicator";
+    static NSString * const cellIdentifierActivityIndicator = @"ci-activity-indicator";
     
     UITableViewCell *cell;
     UILabel *label;
@@ -153,32 +210,41 @@
     
     if (indexPath.section == 0) {
         
-        cellDisabled = (indexPath.row > 0 ? YES : NO);
+        cellDisabled = (indexPath.row > 0 && self.shouldLockPremiumCases == YES) ? YES : NO;
         cellIdentifier = cellIdentifierDefault;
         cellTextLabelText = [WatchCases nameForWatchCase:indexPath.row];
-        cellAccessoryType = (indexPath.row == self.watchCaseKind ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+        cellAccessoryType = (indexPath.row == self.selectedCase ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
         
     }else if (indexPath.section == 1 && indexPath.row == 0) {
         
-        if (self.shouldShowProductAccessoryLabel == YES) {
+        if (self.shouldShowProductActivityIndicator == YES) {
+            
+            cellIdentifier = cellIdentifierActivityIndicator;
+            cellTextLabelText = @"Unlock All Cases";
+            
+        }else{
             
             cellIdentifier = cellIdentifierAccessoryLabel;
             cellTextLabelText = @"Unlock All Cases";
             cellAccessoryLabelText = self.productAccessoryLabelText;
             cellAccessoryLabelTextColor = UIColor.darkGrayColor;
             
-        }else{
-            
-            cellIdentifier = cellIdentifierActivityIndicator;
-            cellTextLabelText = @"Unlock All Cases";
-            
         }
         
     }else if (indexPath.section == 1 && indexPath.row == 1) {
         
-        cellIdentifier = cellIdentifierDefault;
-        cellTextLabelText = @"Restore Purchases";
-        cellAccessoryType = UITableViewCellAccessoryNone;
+        if (self.shouldShowRestoreActivityIndicator == YES) {
+            
+            cellIdentifier = cellIdentifierActivityIndicator;
+            cellTextLabelText = @"Restore Purchases";
+            
+        }else{
+            
+            cellIdentifier = cellIdentifierDefault;
+            cellTextLabelText = @"Restore Purchases";
+            cellAccessoryType = UITableViewCellAccessoryNone;
+            
+        }
         
     }else{
         
@@ -209,11 +275,11 @@
         
         if (cell == nil) {
             
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierAccessoryLabel];
-            
             label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
             label.textAlignment = NSTextAlignmentRight;
             label.textColor = UIColor.darkTextColor;
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierAccessoryLabel];
             cell.accessoryView = label;
             
         }else{
@@ -230,15 +296,14 @@
     
     if ([cellIdentifier isEqualToString:cellIdentifierActivityIndicator]) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierAccessoryLabel];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierActivityIndicator];
         
         if (cell == nil) {
             
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierAccessoryLabel];
-            
             indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             indicator.hidesWhenStopped = NO;
-            [indicator startAnimating];
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierActivityIndicator];
             cell.accessoryView = indicator;
             
         }else{
@@ -266,15 +331,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0 && indexPath.row != self.watchCaseKind) {
+    if (indexPath.section == 0 && indexPath.row != self.selectedCase) {
+        
+        if (UIFeedbackGenerator.class) [self.tapticGenerator selectionChanged];
         
         // Change case selection, switch checkmarks.
         
-        NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:self.watchCaseKind inSection:1];
+        NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:self.selectedCase inSection:0];
         UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousIndexPath];
         UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
         
-        self.watchCaseKind = indexPath.row;
+        self.selectedCase = indexPath.row;
         
         previousCell.accessoryType = UITableViewCellAccessoryNone;
         currentCell.accessoryType = UITableViewCellAccessoryCheckmark;

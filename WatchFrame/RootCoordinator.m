@@ -7,10 +7,13 @@
 //
 
 #import "RootCoordinator.h"
+#import "WatchCases.h"
 #import "RootViewController.h"
 #import "SettingsCoordinator.h"
 
 @interface RootCoordinator ()
+
+@property (nonatomic) kWatchCase selectedCase;
 
 @property (nonatomic, retain) NSMutableArray *childCoordinators;
 @property (nonatomic, retain) UINavigationController *navigationController;
@@ -28,6 +31,7 @@
     
     if (self) {
         
+        self.selectedCase = kWatchCaseGoldAluminum;
         self.childCoordinators = [[NSMutableArray alloc] init];
         
     }
@@ -54,6 +58,7 @@
 - (void)rootViewControllerDidTapSettings {
     
     SettingsCoordinator *coordinator = [[SettingsCoordinator alloc] init];
+    coordinator.selectedCase = self.selectedCase;
     coordinator.delegate = self;
     [coordinator start];
     [self.childCoordinators addObject:coordinator];
@@ -83,9 +88,11 @@
 
 - (void)settingsCoordinator:(NSObject *)coordinator didSelectNewWatchCase:(kWatchCase)watchCase {
     
-    RootViewController *con = (RootViewController *) self.navigationController.viewControllers.firstObject;
+    self.selectedCase = watchCase;
     
-    [con didChangeWatchCase:watchCase];
+    NSArray *viewControllers = self.navigationController.viewControllers;
+    RootViewController *viewController = (RootViewController *) viewControllers.firstObject;
+    [viewController didChangeWatchCase:watchCase];
     
 }
 

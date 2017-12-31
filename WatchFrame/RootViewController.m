@@ -12,7 +12,7 @@
 
 @interface RootViewController ()
 
-@property (nonatomic) NSInteger watchCaseKind;
+@property (nonatomic) kWatchCase watchCaseKind;
 
 @property (nonatomic, retain) UIButton *pickButton;
 @property (nonatomic, retain) UIButton *saveButton;

@@ -10,6 +10,22 @@
 
 @implementation NSArray (Payments)
 
+- (SKProduct *)productWithIdentifier:(NSString *)identifier {
+    
+    for (SKProduct *product in self) {
+        
+        if ([product.productIdentifier isEqualToString:identifier]) {
+            
+            return product;
+            
+        }
+        
+    }
+    
+    return nil;
+    
+}
+
 - (SKPaymentTransaction *)transactionWithProductIdentifier:(NSString *)pid {
     
     for (SKPaymentTransaction *transaction in self) {

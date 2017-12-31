@@ -9,12 +9,14 @@
 #import "SettingsCoordinator.h"
 #import "SettingsViewController.h"
 #import "NSArray+Payments.h"
-
-#define kInAppPurchasesProductIdAllCases @"mateusnbm.watchframe.unlockallcases"
+#import "IAPManager.h"
 
 @interface SettingsCoordinator ()
 
+@property (nonatomic) BOOL purchasedPremiumCases;
 @property (nonatomic) BOOL isLoadingInAppPurchases;
+@property (nonatomic) BOOL isRestoringInAppPurchases;
+
 @property (nonatomic, retain) SKProduct *product;
 
 @property (nonatomic, retain) NSMutableArray *childCoordinators;
@@ -33,11 +35,28 @@
     
     if (self) {
         
+        self.purchasedPremiumCases = NO;
         self.childCoordinators = [[NSMutableArray alloc] init];
+        
+        NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
+        
+        [center addObserver:self selector:@selector(transactionFailed) name:kIAPManagerFailedNotification object:nil];
+        [center addObserver:self selector:@selector(transactionDeferred) name:kIAPManagerDeferredNotification object:nil];
+        [center addObserver:self selector:@selector(purchasedProduct) name:kIAPManagerPurchasedNotification object:nil];
+        [center addObserver:self selector:@selector(didEndRestoringPurchases) name:kIAPManagerDidEndRestoringNotification object:nil];
+        [center addObserver:self selector:@selector(didFailRestoringPurchases) name:kIAPManagerDidFailRestoringNotification object:nil];
         
     }
     
     return self;
+    
+}
+
+- (void)dealloc {
+    
+    NSLog(@"fuck this shit.");
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self];
     
 }
 
@@ -46,43 +65,149 @@
 
 - (void)start {
     
-    SettingsViewController *con = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    con.delegate = self;
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:con];
+    SettingsViewController *viewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    viewController.selectedCase = self.selectedCase;
+    viewController.delegate = self;
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.rootViewController = self.navigationController;
     
-    [self loadInAppPurchases];
+    IAPManager *manager = IAPManager.sharedInstance;
+    NSString *productIdentifier = kIAPProductUnlockPremiumCasesProductIdentifier;
+    BOOL purchasedPremiumCases = [manager purchasedProduct:productIdentifier];
+    
+    if (purchasedPremiumCases == YES) {
+        
+        self.purchasedPremiumCases = YES;
+        
+        [viewController unlockPremiumCases];
+        [viewController showProductAccessoryLabelWithText:@"Purchased"];
+        
+    }else{
+        
+        [self retrieveInAppPurchases];
+        
+    }
     
 }
 
 #pragma mark -
 #pragma mark - Private
 
-- (void)loadInAppPurchases {
-    
-    self.isLoadingInAppPurchases = YES;
-    
-    NSSet *productIDs = [NSSet setWithObject:kInAppPurchasesProductIdAllCases];
-    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIDs];
-    request.delegate = self;
-    [request start];
-    
-}
-
-- (void)showProductPrice {
-    
-    if (self.product == nil) return;
+- (void)showProductPrice:(SKProduct *)product {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.locale = self.product.priceLocale;
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     
-    NSString *formattedPrice = [formatter stringFromNumber:self.product.price];
+    NSString *formattedPrice = [formatter stringFromNumber:product.price];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
     SettingsViewController *viewController = (SettingsViewController *) viewControllers.firstObject;
     
     [viewController showProductAccessoryLabelWithText:formattedPrice];
+    
+}
+
+- (void)unableToRetrieveProducts {
+    
+    NSArray *viewControllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) viewControllers.firstObject;
+    
+    [viewController showProductAccessoryLabelWithText:@"Network Error"];
+    
+}
+
+- (void)retrievedProducts:(NSArray *)products {
+    
+    NSString *identifier = kIAPProductUnlockPremiumCasesProductIdentifier;
+    SKProduct *product = [products productWithIdentifier:identifier];
+    
+    if (product == nil) {
+        
+        [self unableToRetrieveProducts];
+        
+    }else{
+        
+        self.product = product;
+        
+        [self showProductPrice:product];
+        
+    }
+    
+}
+
+- (void)retrieveInAppPurchases {
+    
+    if (self.isLoadingInAppPurchases == YES) return;
+    
+    self.isLoadingInAppPurchases = YES;
+    
+    [IAPManager.sharedInstance requestProducts:^(BOOL success, NSArray *products) {
+        
+        if (success == NO) {
+            
+            [self unableToRetrieveProducts];
+            
+        }else{
+            
+            [self retrievedProducts:products];
+            
+        }
+        
+        self.isLoadingInAppPurchases = NO;
+        
+    }];
+    
+}
+
+#pragma mark -
+#pragma mark - IAPManager Observers
+
+- (void)transactionFailed {
+    
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    
+    [viewController showProductAccessoryLabelWithText:@"Failed"];
+    
+}
+
+- (void)transactionDeferred {
+    
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    
+    [viewController showProductAccessoryLabelWithText:@"Deferred"];
+    
+}
+
+- (void)purchasedProduct {
+    
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    
+    [viewController unlockPremiumCases];
+    [viewController showProductAccessoryLabelWithText:@"Purchased"];
+    
+}
+
+- (void)didEndRestoringPurchases {
+    
+    self.isRestoringInAppPurchases = NO;
+    
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    [viewController hideRestoreActivityIndicator];
+    
+}
+
+- (void)didFailRestoringPurchases {
+    
+    self.isRestoringInAppPurchases = NO;
+    
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    [viewController hideRestoreActivityIndicator];
     
 }
 
@@ -154,95 +279,21 @@
     
     [viewController showProductActivityIndicator];
     
-    SKPayment *payment = [SKPayment paymentWithProduct:self.product];
-    [SKPaymentQueue.defaultQueue addTransactionObserver:self];
-    [SKPaymentQueue.defaultQueue addPayment:payment];
+    [IAPManager.sharedInstance buyProduct:self.product];
     
 }
 
 - (void)settingsViewControllerDidTapRestorePurchases {
     
-    //
+    if (self.isRestoringInAppPurchases == YES) return;
     
-}
-
-#pragma mark -
-#pragma mark - SKProductsRequestDelegate
-
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    
-    self.isLoadingInAppPurchases = NO;
-    
-    if (response.products.count == 0) return;
-    
-    self.product = response.products.firstObject;
-    
-    [self showProductPrice];
-    
-}
-
-#pragma mark -
-#pragma mark - SKPaymentTransactionObserver
-
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
-    
-    NSString *pid = kInAppPurchasesProductIdAllCases;
-    SKPaymentTransaction *transaction = [transactions transactionWithProductIdentifier:pid];
+    self.isRestoringInAppPurchases = YES;
     
     NSArray *controllers = self.navigationController.viewControllers;
     SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    [viewController showRestoreActivityIndicator];
     
-    switch (transaction.transactionState) {
-            
-        case SKPaymentTransactionStatePurchasing:
-            
-            // The transaction is being processed by the App Store.
-            
-            [viewController showProductActivityIndicator];
-            
-            break;
-            
-        case SKPaymentTransactionStatePurchased:
-            
-            // The App Store successfully processed payment. Your application
-            // should provide the content the user purchased.
-            
-            [SKPaymentQueue.defaultQueue finishTransaction:transaction];
-            [viewController showProductAccessoryLabelWithText:@"Purchased"];
-            
-            break;
-            
-        case SKPaymentTransactionStateRestored:
-            
-            // This transaction restores content previously purchased by the
-            // user. Read the 'originalTransaction' property to obtain information
-            // about the original purchase.
-            
-            [SKPaymentQueue.defaultQueue finishTransaction:transaction];
-            [viewController showProductAccessoryLabelWithText:@"Purchased"];
-            
-            break;
-            
-        case SKPaymentTransactionStateFailed:
-            
-            // The transaction failed. Check the 'error' property to determine what happened.
-            
-            [viewController showProductAccessoryLabelWithText:@"Failed"];
-            
-            break;
-            
-        case SKPaymentTransactionStateDeferred:
-            
-            // The transaction is in the queue, but its final status is pending
-            // external action such as Ask to Buy. Update your UI to show the
-            // deferred state, and wait for another callback that indicates the
-            // final status.
-            
-            [viewController showProductAccessoryLabelWithText:@"Deferred"];
-            
-            break;
-            
-    }
+    [IAPManager.sharedInstance restorePurchases];
     
 }
 
