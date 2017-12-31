@@ -11,6 +11,9 @@
 		6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */; };
 		604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A3CB51FF342B200E1FB45 /* SettingsViewController.m */; };
 		607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = 607EA8171FF60A7A0025ADD6 /* NSArray+Payments.m */; };
+		6091CCC71FF96EAF002C9634 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCC61FF96EAF002C9634 /* ThemeManager.m */; };
+		6091CCCA1FF96EC9002C9634 /* DarkTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCC91FF96EC9002C9634 /* DarkTheme.m */; };
+		6091CCCD1FF96ED3002C9634 /* LightTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCCC1FF96ED3002C9634 /* LightTheme.m */; };
 		609872361FF431BD00F324FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609872351FF431BD00F324FB /* StoreKit.framework */; };
 		609872421FF45DD600F324FB /* AppCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 609872411FF45DD600F324FB /* AppCoordinator.m */; };
 		609872451FF4698E00F324FB /* RootCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 609872441FF4698E00F324FB /* RootCoordinator.m */; };
@@ -48,6 +51,13 @@
 		604A3CB51FF342B200E1FB45 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		607EA8161FF60A7A0025ADD6 /* NSArray+Payments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Payments.h"; sourceTree = "<group>"; };
 		607EA8171FF60A7A0025ADD6 /* NSArray+Payments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Payments.m"; sourceTree = "<group>"; };
+		6091CCC51FF96EAF002C9634 /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		6091CCC61FF96EAF002C9634 /* ThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		6091CCC81FF96EC9002C9634 /* DarkTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DarkTheme.h; sourceTree = "<group>"; };
+		6091CCC91FF96EC9002C9634 /* DarkTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DarkTheme.m; sourceTree = "<group>"; };
+		6091CCCB1FF96ED3002C9634 /* LightTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightTheme.h; sourceTree = "<group>"; };
+		6091CCCC1FF96ED3002C9634 /* LightTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightTheme.m; sourceTree = "<group>"; };
+		6091CCD01FF96F48002C9634 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
 		609872351FF431BD00F324FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		609872401FF45DD600F324FB /* AppCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppCoordinator.h; sourceTree = "<group>"; };
 		609872411FF45DD600F324FB /* AppCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppCoordinator.m; sourceTree = "<group>"; };
@@ -110,6 +120,8 @@
 			children = (
 				6002030B1FF6BFA200F2B996 /* IAPManager.h */,
 				6002030C1FF6BFA200F2B996 /* IAPManager.m */,
+				6091CCC51FF96EAF002C9634 /* ThemeManager.h */,
+				6091CCC61FF96EAF002C9634 /* ThemeManager.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -123,6 +135,27 @@
 				6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		6091CCCE1FF96F24002C9634 /* Watch Cases */ = {
+			isa = PBXGroup;
+			children = (
+				609B43F01FF57FBC008C4B57 /* WatchCases.h */,
+				609B43F11FF57FBC008C4B57 /* WatchCases.m */,
+			);
+			name = "Watch Cases";
+			sourceTree = "<group>";
+		};
+		6091CCCF1FF96F31002C9634 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				6091CCD01FF96F48002C9634 /* Theme.h */,
+				6091CCC81FF96EC9002C9634 /* DarkTheme.h */,
+				6091CCC91FF96EC9002C9634 /* DarkTheme.m */,
+				6091CCCB1FF96ED3002C9634 /* LightTheme.h */,
+				6091CCCC1FF96ED3002C9634 /* LightTheme.m */,
+			);
+			name = Themes;
 			sourceTree = "<group>";
 		};
 		609872371FF4446400F324FB /* Root */ = {
@@ -153,8 +186,8 @@
 		6098723F1FF45D6D00F324FB /* Conveniences */ = {
 			isa = PBXGroup;
 			children = (
-				609B43F01FF57FBC008C4B57 /* WatchCases.h */,
-				609B43F11FF57FBC008C4B57 /* WatchCases.m */,
+				6091CCCF1FF96F31002C9634 /* Themes */,
+				6091CCCE1FF96F24002C9634 /* Watch Cases */,
 			);
 			name = Conveniences;
 			sourceTree = "<group>";
@@ -339,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				609D07D11E88123B00D0B840 /* AppDelegate.m in Sources */,
+				6091CCCA1FF96EC9002C9634 /* DarkTheme.m in Sources */,
 				607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */,
 				609872421FF45DD600F324FB /* AppCoordinator.m in Sources */,
 				609B43F21FF57FBC008C4B57 /* WatchCases.m in Sources */,
@@ -349,6 +383,8 @@
 				6098724B1FF4766B00F324FB /* SettingsCoordinator.m in Sources */,
 				609D07CE1E88123B00D0B840 /* main.m in Sources */,
 				6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */,
+				6091CCCD1FF96ED3002C9634 /* LightTheme.m in Sources */,
+				6091CCC71FF96EAF002C9634 /* ThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

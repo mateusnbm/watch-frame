@@ -54,8 +54,6 @@
 
 - (void)dealloc {
     
-    NSLog(@"fuck this shit.");
-    
     [NSNotificationCenter.defaultCenter removeObserver:self];
     
 }

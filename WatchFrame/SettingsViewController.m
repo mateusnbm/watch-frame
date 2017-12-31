@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "ThemeManager.h"
 
 @interface SettingsViewController ()
 
@@ -37,6 +38,8 @@
         self.shouldShowProductActivityIndicator = YES;
         self.shouldShowRestoreActivityIndicator = NO;
         
+        [[ThemeManager theme] themeTableView:self.tableView];
+        
         if (UIFeedbackGenerator.class) {
             
             self.tapticGenerator = [[UISelectionFeedbackGenerator alloc] init];
@@ -48,6 +51,12 @@
     }
     
     return self;
+    
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [[ThemeManager theme] themeTableViewCell:cell];
     
 }
 
