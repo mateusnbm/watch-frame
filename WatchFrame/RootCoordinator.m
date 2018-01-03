@@ -31,7 +31,7 @@
     
     if (self) {
         
-        self.selectedCase = kWatchCaseGoldAluminum;
+        self.selectedCase = [self getPersistedWatchCase];
         self.childCoordinators = [[NSMutableArray alloc] init];
         
     }
@@ -41,11 +41,46 @@
 }
 
 #pragma mark -
+#pragma mark - Private
+
+- (kWatchCase)getPersistedWatchCase {
+    
+    kWatchCase persistedSelection;
+    NSString *key = @"persisted-case-selection";
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    
+    if ([defaults objectForKey:key] == nil) {
+        
+        persistedSelection = kWatchCaseGoldAluminum;
+        [defaults setInteger:persistedSelection forKey:key];
+        
+    }else{
+        
+        persistedSelection = [defaults integerForKey:key];
+        
+    }
+    
+    return persistedSelection;
+    
+}
+
+- (void)updatePersistedWatchCaseSelection:(kWatchCase)selection {
+    
+    NSString *key = @"persisted-case-selection";
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    
+    [defaults setInteger:selection forKey:key];
+    [defaults synchronize];
+    
+}
+
+#pragma mark -
 #pragma mark - Public
 
 - (void)start {
     
     RootViewController *con = [[RootViewController alloc] init];
+    con.selectedCase = self.selectedCase;
     con.delegate = self;
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:con];
     self.rootViewController = self.navigationController;
@@ -89,6 +124,8 @@
 - (void)settingsCoordinator:(NSObject *)coordinator didSelectNewWatchCase:(kWatchCase)watchCase {
     
     self.selectedCase = watchCase;
+    
+    [self updatePersistedWatchCaseSelection:watchCase];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
     RootViewController *viewController = (RootViewController *) viewControllers.firstObject;

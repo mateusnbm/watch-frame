@@ -12,8 +12,6 @@
 
 @interface RootViewController ()
 
-@property (nonatomic) kWatchCase watchCaseKind;
-
 @property (nonatomic, retain) UIButton *pickButton;
 @property (nonatomic, retain) UIButton *saveButton;
 
@@ -43,8 +41,6 @@
     self.title = @"Watch Frame";
     self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
     
-    self.watchCaseKind = kWatchCaseGoldAluminum;
-    
     [self setupView];
     
 }
@@ -64,7 +60,7 @@
     
     CGFloat watchImageWidth = 275;
     CGFloat watchImageHeight = 306;
-    NSString *watchImageName = [WatchCases filenameForWatchCase:self.watchCaseKind];
+    NSString *watchImageName = [WatchCases filenameForWatchCase:self.selectedCase];
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     UIImageView *watchImageView = [[UIImageView alloc] init];
     
@@ -152,7 +148,7 @@
 
 - (void)saveImageToCameraRoll {
     
-    NSString *watchImageName = [WatchCases filenameForWatchCase:self.watchCaseKind];
+    NSString *watchImageName = [WatchCases filenameForWatchCase:self.selectedCase];
     
     UIImage *image1 = self.screenshotImageView.image;
     UIImage *image2 = [UIImage imageNamed:watchImageName];
@@ -180,7 +176,7 @@
     NSString *watchImageName = [WatchCases filenameForWatchCase:watchCase];
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     
-    self.watchCaseKind = watchCase;
+    self.selectedCase = watchCase;
     self.watchImageView.image = watchImage;
     
 }

@@ -221,8 +221,6 @@ NSString *const kIAPProductUnlockPremiumCasesProductIdentifier = @"mateusnbm.wat
     
     for (SKPaymentTransaction *transaction in transactions) {
         
-        NSLog(@"Processing transaction %@", transaction);
-        
         switch (transaction.transactionState) {
                 
             case SKPaymentTransactionStatePurchasing:

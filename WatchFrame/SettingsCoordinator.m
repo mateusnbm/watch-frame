@@ -237,7 +237,18 @@
     NSString *title, *message;
     BOOL showAlertController = NO;
     
-    if (SKPaymentQueue.canMakePayments == NO) {
+    NSArray *controllers = self.navigationController.viewControllers;
+    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
+    
+    if (self.purchasedPremiumCases == YES) {
+        
+        [viewController unlockPremiumCases];
+        [viewController hideRestoreActivityIndicator];
+        [viewController showProductAccessoryLabelWithText:@"Purchased"];
+        
+        return;
+        
+    }else if (SKPaymentQueue.canMakePayments == NO) {
         
         title = @"Error";
         message = @"Unable to accept payments. Please, verify your account restrictions.";
@@ -272,25 +283,32 @@
         
     }
     
-    NSArray *controllers = self.navigationController.viewControllers;
-    SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
-    
     [viewController showProductActivityIndicator];
-    
     [IAPManager.sharedInstance buyProduct:self.product];
     
 }
 
 - (void)settingsViewControllerDidTapRestorePurchases {
     
-    if (self.isRestoringInAppPurchases == YES) return;
-    
-    self.isRestoringInAppPurchases = YES;
-    
     NSArray *controllers = self.navigationController.viewControllers;
     SettingsViewController *viewController = (SettingsViewController *) controllers.firstObject;
-    [viewController showRestoreActivityIndicator];
     
+    if (self.isRestoringInAppPurchases == YES) {
+        
+        return;
+        
+    }else if (self.purchasedPremiumCases == YES) {
+        
+        [viewController unlockPremiumCases];
+        [viewController hideRestoreActivityIndicator];
+        [viewController showProductAccessoryLabelWithText:@"Purchased"];
+        
+        return;
+        
+    }
+    
+    self.isRestoringInAppPurchases = YES;
+    [viewController showRestoreActivityIndicator];
     [IAPManager.sharedInstance restorePurchases];
     
 }

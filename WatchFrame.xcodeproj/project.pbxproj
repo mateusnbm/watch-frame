@@ -120,6 +120,7 @@
 			children = (
 				6002030B1FF6BFA200F2B996 /* IAPManager.h */,
 				6002030C1FF6BFA200F2B996 /* IAPManager.m */,
+				6091CCD01FF96F48002C9634 /* Theme.h */,
 				6091CCC51FF96EAF002C9634 /* ThemeManager.h */,
 				6091CCC61FF96EAF002C9634 /* ThemeManager.m */,
 			);
@@ -149,7 +150,6 @@
 		6091CCCF1FF96F31002C9634 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				6091CCD01FF96F48002C9634 /* Theme.h */,
 				6091CCC81FF96EC9002C9634 /* DarkTheme.h */,
 				6091CCC91FF96EC9002C9634 /* DarkTheme.m */,
 				6091CCCB1FF96ED3002C9634 /* LightTheme.h */,

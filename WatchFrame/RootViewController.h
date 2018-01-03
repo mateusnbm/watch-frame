@@ -15,6 +15,7 @@
     UIImagePickerControllerDelegate
     >
 
+@property (nonatomic) kWatchCase selectedCase;
 @property (nonatomic, retain) id <RootViewControllerDelegate> delegate;
 
 - (void)didChangeWatchCase:(kWatchCase)watchCase;
