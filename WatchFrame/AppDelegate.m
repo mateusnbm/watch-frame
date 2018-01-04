@@ -21,13 +21,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // Makes navigation bar follow Apple's hidden guidelines.
+    
     [[SDStatusBarManager sharedInstance] enableOverrides];
     
+    // Init the in-app purchases manager.
+    
     [IAPManager sharedInstance];
+    
+    // Init the application root coordinator.
     
     self.coordinator = [[AppCoordinator alloc] init];
     
     [self.coordinator start];
+    
+    // Standard window setup.
     
     self.window.frame = [[UIScreen mainScreen] bounds];
     self.window.backgroundColor = [UIColor whiteColor];

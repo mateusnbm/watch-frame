@@ -200,12 +200,12 @@
 			isa = PBXGroup;
 			children = (
 				6086B7881FFDBB3D0055B7D0 /* Fastlane */,
-				6086B76E1FFC96580055B7D0 /* SDStatusBarManager */,
+				6086B76E1FFC96580055B7D0 /* SimulatorStatusMagic */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		6086B76E1FFC96580055B7D0 /* SDStatusBarManager */ = {
+		6086B76E1FFC96580055B7D0 /* SimulatorStatusMagic */ = {
 			isa = PBXGroup;
 			children = (
 				6086B7721FFC96600055B7D0 /* SDStatusBarManager.h */,
@@ -226,7 +226,7 @@
 				6086B77B1FFC96610055B7D0 /* SDStatusBarOverriderPre8_3.h */,
 				6086B7711FFC96600055B7D0 /* SDStatusBarOverriderPre8_3.m */,
 			);
-			name = SDStatusBarManager;
+			name = SimulatorStatusMagic;
 			sourceTree = "<group>";
 		};
 		6086B7881FFDBB3D0055B7D0 /* Fastlane */ = {
