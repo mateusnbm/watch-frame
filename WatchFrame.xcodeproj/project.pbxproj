@@ -11,6 +11,16 @@
 		6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */; };
 		604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A3CB51FF342B200E1FB45 /* SettingsViewController.m */; };
 		607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = 607EA8171FF60A7A0025ADD6 /* NSArray+Payments.m */; };
+		6086B7661FFC85E70055B7D0 /* WatchFrameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7651FFC85E70055B7D0 /* WatchFrameUITests.m */; };
+		6086B7801FFC96610055B7D0 /* SDStatusBarOverriderPost10_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B76F1FFC96600055B7D0 /* SDStatusBarOverriderPost10_0.m */; };
+		6086B7811FFC96610055B7D0 /* SDStatusBarOverriderPre8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7711FFC96600055B7D0 /* SDStatusBarOverriderPre8_3.m */; };
+		6086B7821FFC96610055B7D0 /* SDStatusBarOverriderPost11_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7751FFC96600055B7D0 /* SDStatusBarOverriderPost11_0.m */; };
+		6086B7831FFC96610055B7D0 /* SDStatusBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7761FFC96600055B7D0 /* SDStatusBarManager.m */; };
+		6086B7841FFC96610055B7D0 /* SDStatusBarOverriderPost8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7771FFC96600055B7D0 /* SDStatusBarOverriderPost8_3.m */; };
+		6086B7851FFC96610055B7D0 /* SDStatusBarOverriderPost9_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7781FFC96600055B7D0 /* SDStatusBarOverriderPost9_0.m */; };
+		6086B7861FFC96610055B7D0 /* SDStatusBarOverriderPost9_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B7791FFC96610055B7D0 /* SDStatusBarOverriderPost9_3.m */; };
+		6086B7871FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086B77A1FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.m */; };
+		6086B78B1FFDBB550055B7D0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086B78A1FFDBB550055B7D0 /* SnapshotHelper.swift */; };
 		6091CCC71FF96EAF002C9634 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCC61FF96EAF002C9634 /* ThemeManager.m */; };
 		6091CCCA1FF96EC9002C9634 /* DarkTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCC91FF96EC9002C9634 /* DarkTheme.m */; };
 		6091CCCD1FF96ED3002C9634 /* LightTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6091CCCC1FF96ED3002C9634 /* LightTheme.m */; };
@@ -42,6 +52,16 @@
 		60CAA2BD1FF3595B00497FEB /* watch_stainless_steel.png in Resources */ = {isa = PBXBuildFile; fileRef = 60CAA2B71FF3595B00497FEB /* watch_stainless_steel.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6086B7681FFC85E70055B7D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 609D07C11E88123B00D0B840 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 609D07C81E88123B00D0B840;
+			remoteInfo = WatchFrame;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		6002030B1FF6BFA200F2B996 /* IAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAPManager.h; sourceTree = "<group>"; };
 		6002030C1FF6BFA200F2B996 /* IAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAPManager.m; sourceTree = "<group>"; };
@@ -51,6 +71,28 @@
 		604A3CB51FF342B200E1FB45 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		607EA8161FF60A7A0025ADD6 /* NSArray+Payments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Payments.h"; sourceTree = "<group>"; };
 		607EA8171FF60A7A0025ADD6 /* NSArray+Payments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Payments.m"; sourceTree = "<group>"; };
+		6086B7631FFC85E70055B7D0 /* WatchFrameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchFrameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6086B7651FFC85E70055B7D0 /* WatchFrameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchFrameUITests.m; sourceTree = "<group>"; };
+		6086B7671FFC85E70055B7D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6086B76F1FFC96600055B7D0 /* SDStatusBarOverriderPost10_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost10_0.m; sourceTree = "<group>"; };
+		6086B7701FFC96600055B7D0 /* SDStatusBarOverriderPost9_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost9_3.h; sourceTree = "<group>"; };
+		6086B7711FFC96600055B7D0 /* SDStatusBarOverriderPre8_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPre8_3.m; sourceTree = "<group>"; };
+		6086B7721FFC96600055B7D0 /* SDStatusBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarManager.h; sourceTree = "<group>"; };
+		6086B7731FFC96600055B7D0 /* SDStatusBarOverriderPost8_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost8_3.h; sourceTree = "<group>"; };
+		6086B7741FFC96600055B7D0 /* SDStatusBarOverriderPost10_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost10_0.h; sourceTree = "<group>"; };
+		6086B7751FFC96600055B7D0 /* SDStatusBarOverriderPost11_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost11_0.m; sourceTree = "<group>"; };
+		6086B7761FFC96600055B7D0 /* SDStatusBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarManager.m; sourceTree = "<group>"; };
+		6086B7771FFC96600055B7D0 /* SDStatusBarOverriderPost8_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost8_3.m; sourceTree = "<group>"; };
+		6086B7781FFC96600055B7D0 /* SDStatusBarOverriderPost9_0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost9_0.m; sourceTree = "<group>"; };
+		6086B7791FFC96610055B7D0 /* SDStatusBarOverriderPost9_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost9_3.m; sourceTree = "<group>"; };
+		6086B77A1FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStatusBarOverriderPost10_3.m; sourceTree = "<group>"; };
+		6086B77B1FFC96610055B7D0 /* SDStatusBarOverriderPre8_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPre8_3.h; sourceTree = "<group>"; };
+		6086B77C1FFC96610055B7D0 /* SDStatusBarOverrider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverrider.h; sourceTree = "<group>"; };
+		6086B77D1FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost10_3.h; sourceTree = "<group>"; };
+		6086B77E1FFC96610055B7D0 /* SDStatusBarOverriderPost9_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost9_0.h; sourceTree = "<group>"; };
+		6086B77F1FFC96610055B7D0 /* SDStatusBarOverriderPost11_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStatusBarOverriderPost11_0.h; sourceTree = "<group>"; };
+		6086B7891FFDBB540055B7D0 /* WatchFrameUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchFrameUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		6086B78A1FFDBB550055B7D0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		6091CCC51FF96EAF002C9634 /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		6091CCC61FF96EAF002C9634 /* ThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		6091CCC81FF96EC9002C9634 /* DarkTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DarkTheme.h; sourceTree = "<group>"; };
@@ -98,6 +140,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6086B7601FFC85E70055B7D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		609D07C61E88123B00D0B840 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,6 +185,57 @@
 				6034FFC01FF306F000C1CE8B /* UIImage+BackgroundColor.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		6086B7641FFC85E70055B7D0 /* WatchFrameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6086B7651FFC85E70055B7D0 /* WatchFrameUITests.m */,
+				6086B7671FFC85E70055B7D0 /* Info.plist */,
+			);
+			path = WatchFrameUITests;
+			sourceTree = "<group>";
+		};
+		6086B76D1FFC964B0055B7D0 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6086B7881FFDBB3D0055B7D0 /* Fastlane */,
+				6086B76E1FFC96580055B7D0 /* SDStatusBarManager */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		6086B76E1FFC96580055B7D0 /* SDStatusBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				6086B7721FFC96600055B7D0 /* SDStatusBarManager.h */,
+				6086B7761FFC96600055B7D0 /* SDStatusBarManager.m */,
+				6086B77C1FFC96610055B7D0 /* SDStatusBarOverrider.h */,
+				6086B7731FFC96600055B7D0 /* SDStatusBarOverriderPost8_3.h */,
+				6086B7771FFC96600055B7D0 /* SDStatusBarOverriderPost8_3.m */,
+				6086B77E1FFC96610055B7D0 /* SDStatusBarOverriderPost9_0.h */,
+				6086B7781FFC96600055B7D0 /* SDStatusBarOverriderPost9_0.m */,
+				6086B7701FFC96600055B7D0 /* SDStatusBarOverriderPost9_3.h */,
+				6086B7791FFC96610055B7D0 /* SDStatusBarOverriderPost9_3.m */,
+				6086B7741FFC96600055B7D0 /* SDStatusBarOverriderPost10_0.h */,
+				6086B76F1FFC96600055B7D0 /* SDStatusBarOverriderPost10_0.m */,
+				6086B77D1FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.h */,
+				6086B77A1FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.m */,
+				6086B77F1FFC96610055B7D0 /* SDStatusBarOverriderPost11_0.h */,
+				6086B7751FFC96600055B7D0 /* SDStatusBarOverriderPost11_0.m */,
+				6086B77B1FFC96610055B7D0 /* SDStatusBarOverriderPre8_3.h */,
+				6086B7711FFC96600055B7D0 /* SDStatusBarOverriderPre8_3.m */,
+			);
+			name = SDStatusBarManager;
+			sourceTree = "<group>";
+		};
+		6086B7881FFDBB3D0055B7D0 /* Fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				6086B78A1FFDBB550055B7D0 /* SnapshotHelper.swift */,
+				6086B7891FFDBB540055B7D0 /* WatchFrameUITests-Bridging-Header.h */,
+			);
+			name = Fastlane;
 			sourceTree = "<group>";
 		};
 		6091CCCE1FF96F24002C9634 /* Watch Cases */ = {
@@ -196,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				609D07CB1E88123B00D0B840 /* WatchFrame */,
+				6086B7641FFC85E70055B7D0 /* WatchFrameUITests */,
 				609D07CA1E88123B00D0B840 /* Products */,
 				609D07E31E88569900D0B840 /* Frameworks */,
 			);
@@ -205,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				609D07C91E88123B00D0B840 /* WatchFrame.app */,
+				6086B7631FFC85E70055B7D0 /* WatchFrameUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +320,7 @@
 				609872411FF45DD600F324FB /* AppCoordinator.m */,
 				6034FFC31FF306F800C1CE8B /* Categories */,
 				6098723F1FF45D6D00F324FB /* Conveniences */,
+				6086B76D1FFC964B0055B7D0 /* Libraries */,
 				6002030A1FF6BF6A00F2B996 /* Services */,
 				60BE77761FEC891400F176C8 /* Modules */,
 				60BE77771FEC891D00F176C8 /* Resources */,
@@ -288,6 +391,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6086B7621FFC85E70055B7D0 /* WatchFrameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6086B76A1FFC85E70055B7D0 /* Build configuration list for PBXNativeTarget "WatchFrameUITests" */;
+			buildPhases = (
+				6086B75F1FFC85E70055B7D0 /* Sources */,
+				6086B7601FFC85E70055B7D0 /* Frameworks */,
+				6086B7611FFC85E70055B7D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6086B7691FFC85E70055B7D0 /* PBXTargetDependency */,
+			);
+			name = WatchFrameUITests;
+			productName = WatchFrameUITests;
+			productReference = 6086B7631FFC85E70055B7D0 /* WatchFrameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		609D07C81E88123B00D0B840 /* WatchFrame */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 609D07E01E88123B00D0B840 /* Build configuration list for PBXNativeTarget "WatchFrame" */;
@@ -314,6 +435,13 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = mateusnbm;
 				TargetAttributes = {
+					6086B7621FFC85E70055B7D0 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = E45NCZ4KFV;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 609D07C81E88123B00D0B840;
+					};
 					609D07C81E88123B00D0B840 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = E45NCZ4KFV;
@@ -340,11 +468,19 @@
 			projectRoot = "";
 			targets = (
 				609D07C81E88123B00D0B840 /* WatchFrame */,
+				6086B7621FFC85E70055B7D0 /* WatchFrameUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6086B7611FFC85E70055B7D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		609D07C71E88123B00D0B840 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,28 +503,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6086B75F1FFC85E70055B7D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6086B7661FFC85E70055B7D0 /* WatchFrameUITests.m in Sources */,
+				6086B78B1FFDBB550055B7D0 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		609D07C51E88123B00D0B840 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6086B7871FFC96610055B7D0 /* SDStatusBarOverriderPost10_3.m in Sources */,
 				609D07D11E88123B00D0B840 /* AppDelegate.m in Sources */,
 				6091CCCA1FF96EC9002C9634 /* DarkTheme.m in Sources */,
 				607EA8181FF60A7A0025ADD6 /* NSArray+Payments.m in Sources */,
 				609872421FF45DD600F324FB /* AppCoordinator.m in Sources */,
 				609B43F21FF57FBC008C4B57 /* WatchCases.m in Sources */,
+				6086B7801FFC96610055B7D0 /* SDStatusBarOverriderPost10_0.m in Sources */,
 				6002030D1FF6BFA200F2B996 /* IAPManager.m in Sources */,
 				604A3CB61FF342B200E1FB45 /* SettingsViewController.m in Sources */,
 				609872451FF4698E00F324FB /* RootCoordinator.m in Sources */,
 				609872481FF4705C00F324FB /* RootViewController.m in Sources */,
+				6086B7831FFC96610055B7D0 /* SDStatusBarManager.m in Sources */,
+				6086B7811FFC96610055B7D0 /* SDStatusBarOverriderPre8_3.m in Sources */,
 				6098724B1FF4766B00F324FB /* SettingsCoordinator.m in Sources */,
 				609D07CE1E88123B00D0B840 /* main.m in Sources */,
+				6086B7861FFC96610055B7D0 /* SDStatusBarOverriderPost9_3.m in Sources */,
+				6086B7841FFC96610055B7D0 /* SDStatusBarOverriderPost8_3.m in Sources */,
 				6034FFC21FF306F000C1CE8B /* UIImage+BackgroundColor.m in Sources */,
+				6086B7851FFC96610055B7D0 /* SDStatusBarOverriderPost9_0.m in Sources */,
 				6091CCCD1FF96ED3002C9634 /* LightTheme.m in Sources */,
 				6091CCC71FF96EAF002C9634 /* ThemeManager.m in Sources */,
+				6086B7821FFC96610055B7D0 /* SDStatusBarOverriderPost11_0.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6086B7691FFC85E70055B7D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 609D07C81E88123B00D0B840 /* WatchFrame */;
+			targetProxy = 6086B7681FFC85E70055B7D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		609D07DA1E88123B00D0B840 /* LaunchScreen.storyboard */ = {
@@ -402,6 +563,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6086B76B1FFC85E70055B7D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E45NCZ4KFV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = WatchFrameUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mateusnbm.WatchFrameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchFrame/WatchFrameUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WatchFrame;
+			};
+			name = Debug;
+		};
+		6086B76C1FFC85E70055B7D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E45NCZ4KFV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = WatchFrameUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mateusnbm.WatchFrameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchFrame/WatchFrameUITests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WatchFrame;
+			};
+			name = Release;
+		};
 		609D07DE1E88123B00D0B840 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -533,6 +741,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6086B76A1FFC85E70055B7D0 /* Build configuration list for PBXNativeTarget "WatchFrameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6086B76B1FFC85E70055B7D0 /* Debug */,
+				6086B76C1FFC85E70055B7D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		609D07C41E88123B00D0B840 /* Build configuration list for PBXProject "WatchFrame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -73,6 +73,9 @@
     NSString *productIdentifier = kIAPProductUnlockPremiumCasesProductIdentifier;
     BOOL purchasedPremiumCases = [manager purchasedProduct:productIdentifier];
     
+#warning remove this for production
+    purchasedPremiumCases = YES;
+    
     if (purchasedPremiumCases == YES) {
         
         self.purchasedPremiumCases = YES;

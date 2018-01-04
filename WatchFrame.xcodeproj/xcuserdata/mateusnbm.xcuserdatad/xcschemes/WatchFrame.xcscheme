@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6086B7621FFC85E70055B7D0"
+               BuildableName = "WatchFrameUITests.xctest"
+               BlueprintName = "WatchFrameUITests"
+               ReferencedContainer = "container:WatchFrame.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

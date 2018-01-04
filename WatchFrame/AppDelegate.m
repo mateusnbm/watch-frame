@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppCoordinator.h"
 #import "IAPManager.h"
+#import "SDStatusBarManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[SDStatusBarManager sharedInstance] enableOverrides];
     
     [IAPManager sharedInstance];
     
