@@ -73,8 +73,12 @@
     NSString *productIdentifier = kIAPProductUnlockPremiumCasesProductIdentifier;
     BOOL purchasedPremiumCases = [manager purchasedProduct:productIdentifier];
     
-#warning remove this for production
-    purchasedPremiumCases = YES;
+    //
+    // Comment out this lines in production, they are used to unlock
+    // all cases before taking app store screenshots.
+    //
+    // #warning Comment the line below in production.
+    // purchasedPremiumCases = YES;
     
     if (purchasedPremiumCases == YES) {
         

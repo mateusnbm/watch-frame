@@ -64,9 +64,18 @@
     UIImage *watchImage = [UIImage imageNamed:watchImageName];
     UIImageView *watchImageView = [[UIImageView alloc] init];
     
+    //
+    // Attempt to fix Apple Review issue (showing an apple product) by
+    // displying only a blacked out version of the watch mockup.
+    //
+    // Comment this line up and uncomment code in didChangeWatchCase: to revert.
+    //
+    watchImage = [UIImage imageNamed:@"watch-blacked-out.png"];
+    
     watchImageView.frame = CGRectMake(0, 0, watchImageWidth, watchImageHeight);
     watchImageView.center = screenCenter;
     watchImageView.image = watchImage;
+    watchImageView.backgroundColor = UIColor.clearColor;
     
     [self.view addSubview:watchImageView];
     
@@ -148,6 +157,14 @@
 
 - (void)saveImageToCameraRoll {
     
+    //
+    // Uncomment the code below when generating app store screenshots
+    // in order to display the watch frame with an image selected.
+    //
+    // #warning Comment out in production.
+    // self.screenshotImageView.image = [UIImage imageNamed:@"watch-screenshot.png"];
+    // return;
+    
     NSString *watchImageName = [WatchCases filenameForWatchCase:self.selectedCase];
     
     UIImage *image1 = self.screenshotImageView.image;
@@ -173,11 +190,16 @@
 
 - (void)didChangeWatchCase:(kWatchCase)watchCase {
     
-    NSString *watchImageName = [WatchCases filenameForWatchCase:watchCase];
-    UIImage *watchImage = [UIImage imageNamed:watchImageName];
-    
     self.selectedCase = watchCase;
-    self.watchImageView.image = watchImage;
+    
+    //
+    // Commented out in order to keep the blacked out version of
+    // watch mockups visible all the times.
+    //
+    // NSString *watchImageName = [WatchCases filenameForWatchCase:watchCase];
+    // UIImage *watchImage = [UIImage imageNamed:watchImageName];
+    // self.watchImageView.image = watchImage;
+    //
     
 }
 

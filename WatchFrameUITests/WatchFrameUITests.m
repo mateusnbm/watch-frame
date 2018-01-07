@@ -52,10 +52,13 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     
     [app.navigationBars[@"Watch Frame"].buttons[@"settings icon"] tap];
-    [Snapshot snapshot:@"1-settings" timeWaitingForIdle:2];
+    [Snapshot snapshot:@"2-settings" timeWaitingForIdle:2];
     
     [app.navigationBars[@"Settings"].buttons[@"Done"] tap];
     [Snapshot snapshot:@"0-home" timeWaitingForIdle:2];
+    
+    [app.buttons[@"Save Image"] tap];
+    [Snapshot snapshot:@"1-home-filled" timeWaitingForIdle:2];
     
 }
 

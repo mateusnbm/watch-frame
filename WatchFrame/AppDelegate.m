@@ -21,9 +21,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // Makes navigation bar follow Apple's hidden guidelines.
-    
-    [[SDStatusBarManager sharedInstance] enableOverrides];
+    //
+    // Makes navigation bar follow Apple's hidden guidelines. Always
+    // comment this line out before submiting the application.
+    //
+    // #warning Comment out in production.
+    // [[SDStatusBarManager sharedInstance] enableOverrides];
     
     // Init the in-app purchases manager.
     
